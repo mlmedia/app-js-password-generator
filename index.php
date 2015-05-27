@@ -5,7 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Password generator</title>
-	<style type="text/css">*{margin:0;padding:0;}*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}body{background-color:#f3f3f3;color:#333;font-family:arial,helvetica,sans-serif;font-size:14px;line-height:1.6em;position:relative;}.container{margin:0 auto;padding:2em;width:960px;}h1,h2,h3,h4{line-height:1.4em;margin:.4em 0 .6em;padding:0;}p{margin-bottom:1.4em;}hr{border:0;border-top:1px solid #ddd;margin:1.4em 0;}input[type="text"],input[type="password"],input[type="email"],input[type="tel"],input[type="search"],select{-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);color:#555;display:block;height:38px;line-height:1.42857143;padding:8px 12px;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;width:100%;}.field{margin:1em 0 2em;}.whitebox{-moz-border-radius:.4em;-moz-box-shadow:0 0 .5em #ccc;-webkit-border-radius:.4em;-webkit-box-shadow:0 0 .5em #ccc;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:.4em;box-shadow:0 0 .4em #ccc;min-height:420px;padding:2em 2em 3em;}.btn{-moz-box-shadow:inset 0 1px 0 0 #c1ed9c;-webkit-box-shadow:inset 0 1px 0 0 #c1ed9c;background:0;background-color:#9dce2c;border:1px solid #83c41a;box-shadow:inset 0 1px 0 0 #c1ed9c;color:#fff;cursor:pointer;display:inline-block;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce2c',endColorstr='#8cb82b');font-family:Arial;font-size:15px;font-style:normal;font-weight:700;height:50px;line-height:50px;padding:0 2em;text-align:center;text-decoration:none;text-indent:0;text-shadow:1px 1px 0 #689324;}.btn:hover{background:0;background-color:#8cb82b;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb82b',endColorstr='#9dce2c');}.btn:active{position:relative;top:1px;}.field_contain .field{width:50%;}.field_contain label{clear:both;display:block;font-size:1.2em;font-weight:700;margin-bottom:.6em;width:100%;}#output_container{margin-top:1em;}#output_container input[type="text"]{clear:both;font-size:1.4em;height:42px;padding:10px 14px;}</style>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+		body{background-color:#f3f3f3;color:#333;font-family:arial,helvetica,sans-serif;font-size:14px;line-height:1.6em;position:relative;}
+		.container{margin:0 auto;padding:2em;width:960px;}
+		h1,h2,h3,h4{line-height:1.4em;margin:.4em 0 .6em;padding:0;}
+		p{margin-bottom:1.4em;}
+		hr{border:0;border-top:1px solid #ddd;margin:1.4em 0;}
+		input[type="text"],input[type="password"],input[type="email"],input[type="tel"],input[type="search"],select{-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);color:#555;display:block;height:38px;line-height:1.42857143;padding:8px 12px;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;width:100%;}
+		.field{margin:1em 0 2em;}
+		.whitebox{-moz-border-radius:.4em;-moz-box-shadow:0 0 .5em #ccc;-webkit-border-radius:.4em;-webkit-box-shadow:0 0 .5em #ccc;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:.4em;box-shadow:0 0 .4em #ccc;min-height:420px;padding:2em 2em 3em;}
+		.btn{-moz-box-shadow:inset 0 1px 0 0 #c1ed9c;-webkit-box-shadow:inset 0 1px 0 0 #c1ed9c;background:0;background-color:#9dce2c;border:1px solid #83c41a;box-shadow:inset 0 1px 0 0 #c1ed9c;color:#fff;cursor:pointer;display:inline-block;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce2c',endColorstr='#8cb82b');font-family:Arial;font-size:15px;font-style:normal;font-weight:700;height:50px;line-height:50px;padding:0 2em;text-align:center;text-decoration:none;text-indent:0;text-shadow:1px 1px 0 #689324;}
+		.btn:hover{background:0;background-color:#8cb82b;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb82b',endColorstr='#9dce2c');}
+		.btn:active{position:relative;top:1px;}
+		.field_contain .field{width:50%;}
+		.field_contain label{clear:both;display:block;font-size:1.2em;font-weight:700;margin-bottom:.6em;width:100%;}
+		#output_container{margin-top:1em;}
+		#output_container input[type="text"]{clear:both;font-size:1.4em;height:42px;padding:10px 14px;}
+		@media (max-width:979px) {
+			.container{width:100%;}
+		}
+		@media (max-width:790px) {
+			.field_contain .field{width:100%;}
+		}
+		@media (max-width:500px) {
+			.btn {display:block;width:auto;}
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -13,7 +40,7 @@
 			<h1>Password generator</h1>
 			<p>
 				Click the button below to generate a secure random password from characters A-Z, a-z, 0-9, and _.  Although not the type of password you generally memorize, similar characters were removed, such as 0 and O.
-			</p>	
+			</p>
 			<hr />
 			<form id="form_password_generate" name="form_password_generate" action="#" method="post" role="form">
 				<div class="field_contain">
@@ -62,7 +89,7 @@
 			{
 				var str = '';
 				var alphanum_chars = 'abcdefghijkmnprstuvwxyzACDEFGHJKLMNPRTUVWXY2346789'; /* similar chars removed - e.g. 0 and O */
-				var special_chars = '!@#$%^*?'; 
+				var special_chars = '!@#$%^*?';
 				var underscores = '____'; /* multiple to make them more likely */
 				var chars = alphanum_chars;
 				if (use_underscores)
@@ -74,18 +101,18 @@
 					chars = chars + special_chars;
 				}
 				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length)); /* first character should be alpha-numeric */
-				for( var i=0; i < len - 2; i++ ) 
+				for( var i=0; i < len - 2; i++ )
 				{
 					str += chars.charAt(Math.floor(Math.random() * chars.length)); /* middle chars can be anything */
 				}
 				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length)); /* last character should be alpha-numeric */
 				return str;
-			} 
-			
+			}
+
 			/* add event listener function */
 			var generate_btns = document.getElementsByClassName('generate_trigger');
-			
-			var print_string = function(e) 
+
+			var print_string = function(e)
 			{
 				e.preventDefault();
 				var output_target = document.getElementById('output_target');
@@ -96,7 +123,7 @@
 				var result = random_string(input_length_val, use_underscores, use_special);
 				output_target.value = result;
 			};
-			
+
 			for( var i = 0;i < generate_btns.length; i++ )
 			{
 				generate_btns[i].addEventListener('click', print_string, false);
