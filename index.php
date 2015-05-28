@@ -9,7 +9,7 @@
 		*{margin:0;padding:0;}
 		*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 		body{background-color:#f3f3f3;color:#333;font-family:arial,helvetica,sans-serif;font-size:14px;line-height:1.6em;position:relative;}
-		.container{margin:0 auto;padding:2em;width:960px;}
+		.container{margin:0 auto;padding:1em;width:960px;}
 		h1,h2,h3,h4{line-height:1.4em;margin:.4em 0 .6em;padding:0;}
 		p{margin-bottom:1.4em;}
 		hr{border:0;border-top:1px solid #ddd;margin:1.4em 0;}
@@ -36,10 +36,13 @@
 </head>
 <body>
 	<div class="container">
+		<p>
+			This is a demo for a JavaScript password generator as described here: <a href="http://www.dockstreetmedia.com/news/password-generator/" title="Dock Street Media - News">http://www.dockstreetmedia.com/news/password-generator/</a>
+		</p>
 		<div class="whitebox">
 			<h1>Password generator</h1>
 			<p>
-				Click the button below to generate a secure random password from characters A-Z, a-z, 0-9, and _.  Although not the type of password you generally memorize, similar characters were removed, such as 0 and O.
+				Click the button below to generate a secure random password.  The password is generated from a random selection of alpha-numeric characters as well as underscores and special characters if selected in the form.  Although not the type of password you generally memorize, similar characters were removed, such as 0 and O.
 			</p>
 			<hr />
 			<form id="form_password_generate" name="form_password_generate" action="#" method="post" role="form">
@@ -87,31 +90,82 @@
 			/* JS function to generate random string - preferred method */
 			function random_string(len, use_underscores, use_special)
 			{
+				/* empty output string */
 				var str = '';
+
+				/* set a temp string to pass characters - we do this to ensure underscores / special characters make it to the final output */
+				var temp_string = '';
+
+				/* set the rest of the vars */
 				var alphanum_chars = 'abcdefghijkmnprstuvwxyzACDEFGHJKLMNPRTUVWXY2346789'; /* similar chars removed - e.g. 0 and O */
 				var special_chars = '!@#$%^*?';
 				var underscores = '____'; /* multiple to make them more likely */
-				var chars = alphanum_chars;
+				var new_len = len - 2; /* remove 2 chars for the beginning and end alpha-numeric chars only */
+
+				/* number of special characters to add to the string - if less than 12, add 2 each, otherwise add 3 each */
+				var num_special = 2;
+				if ( len > 12 )
+				{
+					num_special = 3;
+				}
+
+				/* if underscores is selected, add to the temp string */
 				if (use_underscores)
 				{
-					chars = chars + underscores;
+					for( var i=0; i < num_special; i++ )
+					{
+						temp_string += underscores.charAt(Math.floor(Math.random() * underscores.length));
+					}
+					new_len = new_len - num_special; /* remove the number of chars used - the remainder will be alpha-numeric as set below */
 				}
+
+				/* if special characters is selected, add to the temp string */
 				if (use_special)
 				{
-					chars = chars + special_chars;
+					for( var i=0; i < num_special; i++ )
+					{
+						temp_string += special_chars.charAt(Math.floor(Math.random() * special_chars.length));
+					}
+					new_len = new_len - num_special; /* remove the number of chars used - the remainder will be alpha-numeric as set below */
 				}
-				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length)); /* first character should be alpha-numeric */
-				for( var i=0; i < len - 2; i++ )
+
+				/* set the remainder as alpha-numeric */
+				for( var i=0; i < new_len; i++ )
 				{
-					str += chars.charAt(Math.floor(Math.random() * chars.length)); /* middle chars can be anything */
+					temp_string += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length));
 				}
-				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length)); /* last character should be alpha-numeric */
+
+				console.log(temp_string);
+
+				/* pass the random characters to the string */
+				/* first character should be alpha-numeric */
+				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length));
+
+				/* shuffle the temp string and put it in the middle */
+				str += shuffle(temp_string);
+
+				/* last character should be alpha-numeric */
+				str += alphanum_chars.charAt(Math.floor(Math.random() * alphanum_chars.length));
+
+				/* return the string */
 				return str;
 			}
 
-			/* add event listener function */
-			var generate_btns = document.getElementsByClassName('generate_trigger');
+			/* shuffle a string */
+			function shuffle(string)
+			{
+				var parts = string.split('');
+				for (var i = parts.length; i > 0;)
+				{
+					var random = parseInt(Math.random() * i);
+					var temp = parts[--i];
+					parts[i] = parts[random];
+					parts[random] = temp;
+				}
+				return parts.join('');
+			}
 
+			/* print the random string to the text field "output_target" */
 			var print_string = function(e)
 			{
 				e.preventDefault();
@@ -124,6 +178,10 @@
 				output_target.value = result;
 			};
 
+			/* add event listener function */
+			var generate_btns = document.getElementsByClassName('generate_trigger');
+
+			/* click event listener for the generate button */
 			for( var i = 0;i < generate_btns.length; i++ )
 			{
 				generate_btns[i].addEventListener('click', print_string, false);
