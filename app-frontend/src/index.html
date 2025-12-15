@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -59,10 +59,12 @@
 			input[type="tel"],
 			input[type="search"],
 			select {
-				-o-transition: border-color ease-in-out 0.15s,
+				-o-transition:
+					border-color ease-in-out 0.15s,
 					box-shadow ease-in-out 0.15s;
 				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-				-webkit-transition: border-color ease-in-out 0.15s,
+				-webkit-transition:
+					border-color ease-in-out 0.15s,
 					-webkit-box-shadow ease-in-out 0.15s;
 				background-color: #fff;
 				background-image: none;
@@ -74,7 +76,8 @@
 				height: 38px;
 				line-height: 1.42857143;
 				padding: 8px 12px;
-				transition: border-color ease-in-out 0.15s,
+				transition:
+					border-color ease-in-out 0.15s,
 					box-shadow ease-in-out 0.15s;
 				width: 100%;
 			}
@@ -211,8 +214,7 @@
 					name="form_password_generate"
 					action="#"
 					method="post"
-					role="form"
-				>
+					role="form">
 					<div class="field_contain">
 						<div class="field">
 							<label>Length of string</label>
@@ -242,8 +244,7 @@
 									id="input_underscores"
 									name="input_underscores"
 									type="checkbox"
-									checked="checked"
-								/>
+									checked="checked" />
 								Include underscores (_) -
 								<i><b>Recommended</b></i>
 							</label>
@@ -255,8 +256,7 @@
 								<input
 									id="input_special"
 									name="input_special"
-									type="checkbox"
-								/>
+									type="checkbox" />
 								Include special characters (@, #, $, %, etc.) -
 								<i><b>Recommended</b></i>
 							</label>
